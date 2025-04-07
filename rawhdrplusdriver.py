@@ -14,7 +14,7 @@ from glob import glob
 import matplotlib.pyplot as plt
 
 
-def load_jpeg_images(image_paths):
+def load_raw_images(image_paths):
     """loads rgb pixels from jpeg images"""
     images = []
     for path in image_paths:
@@ -43,7 +43,7 @@ for i in range(len(all_image_paths)-5):
     if i!=168:
         continue
     image_paths = all_image_paths[i:i+5]
-    images = load_jpeg_images(image_paths)
+    images = load_raw_images(image_paths)
     print(f"Image i: {i}")
 
     params = {

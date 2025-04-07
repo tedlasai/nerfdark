@@ -180,8 +180,8 @@ def align_and_merge(images: Tensor,
             #sample from a uniform gaussian with these heteroscadastic values
             noise = torch.randn_like(ref_image) * variances
             noise_fft = torch.fft.fft2(noise, norm="forward")
-            c = 3e-1#larger value this uses more of the comparison image
-            wiener_filter = torch.abs(diff_fft)**2 / (torch.abs(diff_fft)**2 + c)
+            c = 3e1#larger value this uses more of the comparison image
+            wiener_filter = torch.abs(diff_fft)**2 / (torch.abs(diff_fft)**2 + c*torch.abs(noise_fft))
             merged_image += (c_fft + wiener_filter * diff_fft)/N 
         else:
             # add the aligned image to the output
